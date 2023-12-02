@@ -3,6 +3,18 @@
 //==============================================================================
 using namespace std;
 
+export vec2 plainParallax(float depth)
+{
+  vec4 TangentView = getInverseModelMatrix() * getInverseViewMatrix() * vec4(1.,1.,1.,100.);
+  vec3 TangentViewPos  = getTangentFrame() * TangentView.xyz;
+  vec3 TangentFragPos  = getTangentFrame() * getVertexTexCoord().xy1;
+
+  vec3 viewDir = normalize(TangentViewPos - TangentFragPos);
+  vec2 P = (viewDir.xy * vec2(-1.,1.)) / viewDir.z * depth;
+
+  return getVertexTexCoord() - P;
+}
+
 export vec2 ParallaxMapping(vec2 texCoords, Texture2d depthMap, float heightScale)
 {
     vec4 TangentView = getInverseModelMatrix() * getInverseViewMatrix() * vec4(1.,1.,1.,100.);
@@ -54,5 +66,6 @@ export vec2 ParallaxMapping(vec2 texCoords, Texture2d depthMap, float heightScal
 
 void main(Texture2d tex, Texture2d depth, float depthMax, out vec4 Color) {
     vec2 texCoords = ParallaxMapping(getVertexTexCoord(), depth, depthMax);
-    Color = tex.sample(texCoords);
+    vec2 texCoords2 = plainParallax(depthMax);
+    Color = tex.sample(texCoords2);
 }
