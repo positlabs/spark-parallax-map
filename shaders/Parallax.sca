@@ -1,0 +1,13 @@
+//==============================================================================
+// Welcome to shader authoring in Meta Spark Studio!
+//==============================================================================
+using namespace std;
+
+export vec2 parallaxUV() {
+  return fragment(getVertexTexCoord());
+}
+
+void main(Texture2d tex, out vec4 Color) {
+  vec2 uv = parallaxUV();
+  Color = tex.sample(uv);
+}
