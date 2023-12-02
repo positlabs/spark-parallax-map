@@ -224,6 +224,24 @@
                   "name": "tex",
                   "textureIdentifier": "texture:13947-3eb9e904-832a-42d7-b20f-1ef1e574c8f5",
                   "type": "texture"
+                },
+                {
+                  "identifier": "composed_material_parameter_model:1720145-85449ce5-3522-44b3-b496-c5a83f5768d2",
+                  "isTextureIdentifierEnabled": false,
+                  "modelName": "composed_material_parameter_model",
+                  "name": "depth",
+                  "textureIdentifier": "texture:268719-b1d2e483-5b8b-4f5f-a9e4-96b000a6faaa",
+                  "type": "texture"
+                },
+                {
+                  "identifier": "composed_material_parameter_model:1722737-85449ce5-3522-44b3-b496-c5a83f5768d2",
+                  "isTextureIdentifierEnabled": false,
+                  "modelName": "composed_material_parameter_model",
+                  "name": "depthMax",
+                  "rawValue": [
+                    -0.2
+                  ],
+                  "type": "float"
                 }
               ],
               "identifier": "composed_material_parameters_model:1719631-85449ce5-3522-44b3-b496-c5a83f5768d2",
@@ -397,8 +415,8 @@
                         "sx": 2,
                         "sy": 2,
                         "sz": 2,
-                        "x": -0.019786875694990158,
-                        "y": 0.35529306530952454,
+                        "x": -0.21454428136348724,
+                        "y": -4.172325134277344E-7,
                         "z": 1.1920928955078125E-7
                       },
                       "verticalAlignment": "center",
@@ -627,7 +645,7 @@
     {
       "children": [
         {
-          "assetDataHash": "4f3df5a33b1dffb0d6b655fd821a1924",
+          "assetDataHash": "b2ad819580d0f44dae12545c306fb9a9",
           "assetLocator": "shaders/Parallax.sca",
           "builtinDeps": [
             "texture2d",
@@ -644,10 +662,32 @@
                         "value": 0
                       },
                       "description": "",
-                      "identifier": "shader_input_port_model:1719619-85449ce5-3522-44b3-b496-c5a83f5768d2",
+                      "identifier": "shader_input_port_model:1727481-85449ce5-3522-44b3-b496-c5a83f5768d2",
                       "modelName": "shader_input_port_model",
                       "name": "tex",
                       "valueType": "texture_2d"
+                    },
+                    {
+                      "defaultValue": {
+                        "type": 0,
+                        "value": 0
+                      },
+                      "description": "",
+                      "identifier": "shader_input_port_model:1727483-85449ce5-3522-44b3-b496-c5a83f5768d2",
+                      "modelName": "shader_input_port_model",
+                      "name": "depth",
+                      "valueType": "texture_2d"
+                    },
+                    {
+                      "defaultValue": {
+                        "type": 0,
+                        "value": 0
+                      },
+                      "description": "",
+                      "identifier": "shader_input_port_model:1727485-85449ce5-3522-44b3-b496-c5a83f5768d2",
+                      "modelName": "shader_input_port_model",
+                      "name": "depthMax",
+                      "valueType": "float"
                     }
                   ],
                   "identifier": "shaderInputPorts:1719094-85449ce5-3522-44b3-b496-c5a83f5768d2",
@@ -657,14 +697,14 @@
                   "children": [
                     {
                       "description": "",
-                      "identifier": "shader_output_port_model:1719621-85449ce5-3522-44b3-b496-c5a83f5768d2",
+                      "identifier": "shader_output_port_model:1727487-85449ce5-3522-44b3-b496-c5a83f5768d2",
                       "modelName": "shader_output_port_model",
                       "name": "return",
                       "valueType": "void_return"
                     },
                     {
                       "description": "",
-                      "identifier": "shader_output_port_model:1719623-85449ce5-3522-44b3-b496-c5a83f5768d2",
+                      "identifier": "shader_output_port_model:1727489-85449ce5-3522-44b3-b496-c5a83f5768d2",
                       "modelName": "shader_output_port_model",
                       "name": "Color",
                       "valueType": "vec4"
@@ -674,36 +714,74 @@
                   "modelName": "shaderOutputPorts"
                 }
               ],
-              "description": "",
+              "description": "get depthmap value at current texture coordinates\nget depth of next layer\nget texture coordinates before collision (reverse operations)\nget depth after and before collision for linear interpolation\ninterpolation of texture coordinates",
               "functionName": "user::main",
               "identifier": "shader_interface_model:1719092-85449ce5-3522-44b3-b496-c5a83f5768d2",
-              "linkageName": "sparkShaderCode12717055525129305963",
+              "linkageName": "sparkShaderCode11929985246803466254",
               "modelName": "shader_interface_model"
             },
             {
               "children": [
                 {
-                  "identifier": "shaderInputPorts:1719607-85449ce5-3522-44b3-b496-c5a83f5768d2",
+                  "children": [
+                    {
+                      "defaultValue": {
+                        "type": 1,
+                        "value": [
+                          0,
+                          0
+                        ]
+                      },
+                      "description": "",
+                      "identifier": "shader_input_port_model:1727491-85449ce5-3522-44b3-b496-c5a83f5768d2",
+                      "modelName": "shader_input_port_model",
+                      "name": "texCoords",
+                      "valueType": "vec2"
+                    },
+                    {
+                      "defaultValue": {
+                        "type": 0,
+                        "value": 0
+                      },
+                      "description": "",
+                      "identifier": "shader_input_port_model:1727493-85449ce5-3522-44b3-b496-c5a83f5768d2",
+                      "modelName": "shader_input_port_model",
+                      "name": "depthMap",
+                      "valueType": "texture_2d"
+                    },
+                    {
+                      "defaultValue": {
+                        "type": 0,
+                        "value": 0
+                      },
+                      "description": "",
+                      "identifier": "shader_input_port_model:1727495-85449ce5-3522-44b3-b496-c5a83f5768d2",
+                      "modelName": "shader_input_port_model",
+                      "name": "heightScale",
+                      "valueType": "float"
+                    }
+                  ],
+                  "identifier": "shaderInputPorts:1721237-85449ce5-3522-44b3-b496-c5a83f5768d2",
                   "modelName": "shaderInputPorts"
                 },
                 {
                   "children": [
                     {
                       "description": "",
-                      "identifier": "shader_output_port_model:1719611-85449ce5-3522-44b3-b496-c5a83f5768d2",
+                      "identifier": "shader_output_port_model:1727497-85449ce5-3522-44b3-b496-c5a83f5768d2",
                       "modelName": "shader_output_port_model",
                       "name": "return",
                       "valueType": "vec2"
                     }
                   ],
-                  "identifier": "shaderOutputPorts:1719609-85449ce5-3522-44b3-b496-c5a83f5768d2",
+                  "identifier": "shaderOutputPorts:1721239-85449ce5-3522-44b3-b496-c5a83f5768d2",
                   "modelName": "shaderOutputPorts"
                 }
               ],
               "description": "",
-              "functionName": "user::parallaxUV",
-              "identifier": "shader_interface_model:1719605-85449ce5-3522-44b3-b496-c5a83f5768d2",
-              "linkageName": "user::parallaxUV",
+              "functionName": "user::ParallaxMapping",
+              "identifier": "shader_interface_model:1721235-85449ce5-3522-44b3-b496-c5a83f5768d2",
+              "linkageName": "user::ParallaxMapping",
               "modelName": "shader_interface_model"
             }
           ],
@@ -713,9 +791,9 @@
           "identifier": "shader_code_asset_model:1719090-85449ce5-3522-44b3-b496-c5a83f5768d2",
           "isExternalAsset": true,
           "modelName": "shader_code_asset_model",
-          "moduleName": "sparkShaderCode12717055525129305963",
+          "moduleName": "sparkShaderCode11929985246803466254",
           "name": "Parallax",
-          "wordsHash": -2942979024543654423
+          "wordsHash": 9192499763879835745
         }
       ],
       "identifier": "shaders:40-7e9c9507-5f9b-4883-8363-7cfde1b06467",
@@ -1218,14 +1296,6 @@
   },
   "visual_programming": {
     "connections": [
-      {
-        "fromPatch": "template_patch_model:223634-bedc09cf-857c-4c7e-aa05-7a3f13a811b5",
-        "fromPort": "100",
-        "identifier": "patch_connection_model:1073731-85449ce5-3522-44b3-b496-c5a83f5768d2",
-        "modelName": "patch_connection_model",
-        "toPatch": "consumer_patch_model:1073600-85449ce5-3522-44b3-b496-c5a83f5768d2",
-        "toPort": "101"
-      },
       {
         "fromPatch": "template_patch_model:273096-b1d2e483-5b8b-4f5f-a9e4-96b000a6faaa",
         "fromPort": "100",
@@ -1867,7 +1937,7 @@
         "object": "plane:268741-b1d2e483-5b8b-4f5f-a9e4-96b000a6faaa",
         "objectProperty": "rotation",
         "position": [
-          4652,
+          4868,
           380
         ],
         "values": [
@@ -1924,8 +1994,8 @@
           "patch_output_port_model:148252-bedc09cf-857c-4c7e-aa05-7a3f13a811b5"
         ],
         "position": [
-          -218,
-          -2
+          -268,
+          20
         ],
         "subpatches": [
           "port_forwarding_patch_model:148266-bedc09cf-857c-4c7e-aa05-7a3f13a811b5",
@@ -2039,8 +2109,8 @@
         "modelName": "port_forwarding_patch_model",
         "name": "Input",
         "position": [
-          376,
-          166
+          380,
+          308
         ],
         "values": []
       },
@@ -2049,8 +2119,8 @@
         "modelName": "port_forwarding_patch_model",
         "name": "Texture",
         "position": [
-          376,
-          -170
+          164,
+          -292
         ],
         "values": []
       },
@@ -2059,8 +2129,8 @@
         "modelName": "port_forwarding_patch_model",
         "name": "Output",
         "position": [
-          1204,
-          -74
+          1508,
+          -76
         ],
         "values": []
       },
@@ -2172,8 +2242,8 @@
         "modelName": "template_patch_model",
         "name": "Multiply",
         "position": [
-          646,
-          166
+          668,
+          212
         ],
         "templateId": "builtin.variadicMathMul",
         "values": [
@@ -2195,8 +2265,8 @@
         "modelName": "template_patch_model",
         "name": "Multiply",
         "position": [
-          -434,
-          -242
+          -508,
+          -292
         ],
         "templateId": "builtin.variadicMathMul",
         "values": [],
@@ -2210,8 +2280,8 @@
         "modelName": "template_patch_model",
         "name": "Multiply",
         "position": [
-          766,
-          118
+          1004,
+          164
         ],
         "templateId": "builtin.variadicMathMul",
         "values": [
@@ -2233,8 +2303,8 @@
         "modelName": "template_patch_model",
         "name": "Multiply",
         "position": [
-          -434,
-          -122
+          -340,
+          -268
         ],
         "templateId": "builtin.variadicMathMul",
         "values": [
@@ -2261,8 +2331,8 @@
         "modelName": "template_patch_model",
         "name": "TangentViewPos",
         "position": [
-          46,
-          -50
+          92,
+          -52
         ],
         "templateId": "builtin.variadicMathMul",
         "values": [],
@@ -2291,8 +2361,8 @@
         "modelName": "template_patch_model",
         "name": "Subtract",
         "position": [
-          934,
-          -74
+          1220,
+          -76
         ],
         "templateId": "builtin.variadicMathSub",
         "values": [],
@@ -2306,8 +2376,8 @@
         "modelName": "template_patch_model",
         "name": "Multiply",
         "position": [
-          766,
-          22
+          1004,
+          68
         ],
         "templateId": "builtin.variadicMathMul",
         "values": [],
@@ -2321,8 +2391,8 @@
         "modelName": "template_patch_model",
         "name": "Divide",
         "position": [
-          622,
-          46
+          644,
+          68
         ],
         "templateId": "builtin.variadicMathDiv",
         "values": [],
@@ -2351,8 +2421,8 @@
         "modelName": "template_patch_model",
         "name": "TangentFragPos",
         "position": [
-          46,
-          70
+          92,
+          116
         ],
         "templateId": "builtin.variadicMathMul",
         "values": [],
@@ -2366,8 +2436,8 @@
         "modelName": "template_patch_model",
         "name": "Vertex Transform",
         "position": [
-          -1010,
-          70
+          -1012,
+          44
         ],
         "templateId": "builtin.shaderUniform",
         "values": [
@@ -2385,8 +2455,8 @@
         "modelName": "template_patch_model",
         "name": "Cross Product",
         "position": [
-          -674,
-          -2
+          -604,
+          20
         ],
         "templateId": "builtin.mathCross",
         "values": []
@@ -2396,8 +2466,8 @@
         "modelName": "template_patch_model",
         "name": "Vertex Attribute",
         "position": [
-          -1034,
-          -50
+          -1108,
+          -52
         ],
         "templateId": "builtin.shaderAttribute",
         "values": [
@@ -2415,8 +2485,8 @@
         "modelName": "template_patch_model",
         "name": "Vertex Attribute",
         "position": [
-          -1010,
-          142
+          -1108,
+          140
         ],
         "templateId": "builtin.shaderAttribute",
         "values": [
@@ -2434,8 +2504,8 @@
         "modelName": "template_patch_model",
         "name": "Swizzle",
         "position": [
-          -842,
-          -50
+          -820,
+          -52
         ],
         "templateId": "builtin.shaders.vectorSwizzler",
         "values": [
@@ -2453,8 +2523,8 @@
         "modelName": "template_patch_model",
         "name": "Swizzle",
         "position": [
-          -122,
-          142
+          -100,
+          164
         ],
         "templateId": "builtin.shaders.vectorSwizzler",
         "values": [
@@ -2511,8 +2581,8 @@
         "modelName": "template_patch_model",
         "name": "Vertex Transform",
         "position": [
-          -626,
-          -194
+          -700,
+          -244
         ],
         "templateId": "builtin.shaderUniform",
         "values": [
@@ -2641,8 +2711,8 @@
         "modelName": "template_patch_model",
         "name": "Vertex Transform",
         "position": [
-          -626,
-          -266
+          -700,
+          -316
         ],
         "templateId": "builtin.shaderUniform",
         "values": [
@@ -2838,8 +2908,8 @@
         "modelName": "template_patch_model",
         "name": "depth",
         "position": [
-          718,
-          -74
+          620,
+          -196
         ],
         "templateId": "builtin.shaders.vectorSwizzler",
         "values": [
@@ -2857,8 +2927,8 @@
         "modelName": "template_patch_model",
         "name": "Normalize",
         "position": [
-          262,
-          142
+          284,
+          140
         ],
         "templateId": "builtin.mathNormalize",
         "values": [],
@@ -2926,8 +2996,8 @@
         "modelName": "template_patch_model",
         "name": "Vertex Attribute",
         "position": [
-          -338,
-          166
+          -436,
+          164
         ],
         "templateId": "builtin.shaderAttribute",
         "values": [
@@ -2945,8 +3015,8 @@
         "modelName": "template_patch_model",
         "name": "Texture Sampler",
         "position": [
-          646,
-          -170
+          476,
+          -316
         ],
         "templateId": "builtin.shaders.textureSampler",
         "values": [
@@ -2964,8 +3034,8 @@
         "modelName": "template_patch_model",
         "name": "Vertex Attribute",
         "position": [
-          670,
-          -242
+          380,
+          -436
         ],
         "templateId": "builtin.shaderAttribute",
         "values": [
