@@ -67,5 +67,5 @@ export vec2 ParallaxMapping(vec2 texCoords, Texture2d depthMap, float heightScal
 void main(Texture2d tex, Texture2d depth, float depthMax, out vec4 Color) {
     vec2 texCoords = ParallaxMapping(getVertexTexCoord(), depth, depthMax);
     vec2 texCoords2 = plainParallax(depthMax);
-    Color = tex.sample(texCoords2);
+    Color = tex.sample(texCoords);
 }
