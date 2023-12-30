@@ -431,7 +431,7 @@
     {
       "children": [
         {
-          "assetDataHash": "662bf58f01fa9110bab22c912299d032",
+          "assetDataHash": "063f4a849e1352a18bef21c21e907c15",
           "assetLocator": "shaders/Parallax.sca",
           "builtinDeps": [
             "texture2d",
@@ -448,7 +448,7 @@
                         "value": 0
                       },
                       "description": "",
-                      "identifier": "shader_input_port_model:455736-40aec13d-68e1-43c2-a7f7-ad1d3ff8b111",
+                      "identifier": "shader_input_port_model:269974-e5c34f75-3766-4f80-9fb9-f536fe77929c",
                       "modelName": "shader_input_port_model",
                       "name": "tex",
                       "valueType": "texture_2d"
@@ -459,7 +459,7 @@
                         "value": 0
                       },
                       "description": "",
-                      "identifier": "shader_input_port_model:455738-40aec13d-68e1-43c2-a7f7-ad1d3ff8b111",
+                      "identifier": "shader_input_port_model:269976-e5c34f75-3766-4f80-9fb9-f536fe77929c",
                       "modelName": "shader_input_port_model",
                       "name": "depth",
                       "valueType": "texture_2d"
@@ -467,10 +467,10 @@
                     {
                       "defaultValue": {
                         "type": 0,
-                        "value": 0
+                        "value": -0.20000000298023224
                       },
                       "description": "",
-                      "identifier": "shader_input_port_model:455740-40aec13d-68e1-43c2-a7f7-ad1d3ff8b111",
+                      "identifier": "shader_input_port_model:269978-e5c34f75-3766-4f80-9fb9-f536fe77929c",
                       "modelName": "shader_input_port_model",
                       "name": "depthMax",
                       "valueType": "float"
@@ -483,14 +483,14 @@
                   "children": [
                     {
                       "description": "",
-                      "identifier": "shader_output_port_model:455742-40aec13d-68e1-43c2-a7f7-ad1d3ff8b111",
+                      "identifier": "shader_output_port_model:269980-e5c34f75-3766-4f80-9fb9-f536fe77929c",
                       "modelName": "shader_output_port_model",
                       "name": "return",
                       "valueType": "void_return"
                     },
                     {
                       "description": "",
-                      "identifier": "shader_output_port_model:455744-40aec13d-68e1-43c2-a7f7-ad1d3ff8b111",
+                      "identifier": "shader_output_port_model:269982-e5c34f75-3766-4f80-9fb9-f536fe77929c",
                       "modelName": "shader_output_port_model",
                       "name": "Color",
                       "valueType": "vec4"
@@ -503,7 +503,7 @@
               "description": "get depthmap value at current texture coordinates\nget depth of next layer\nget texture coordinates before collision (reverse operations)\nget depth after and before collision for linear interpolation\ninterpolation of texture coordinates",
               "functionName": "user::main",
               "identifier": "shader_interface_model:1719092-85449ce5-3522-44b3-b496-c5a83f5768d2",
-              "linkageName": "sparkShaderCode6245295133266938940",
+              "linkageName": "sparkShaderCode14224097527921851529",
               "modelName": "shader_interface_model"
             },
             {
@@ -513,100 +513,36 @@
                     {
                       "defaultValue": {
                         "type": 0,
-                        "value": 0
+                        "value": -0.20000000298023224
                       },
                       "description": "",
-                      "identifier": "shader_input_port_model:92654-40aec13d-68e1-43c2-a7f7-ad1d3ff8b111",
+                      "identifier": "shader_input_port_model:269990-e5c34f75-3766-4f80-9fb9-f536fe77929c",
                       "modelName": "shader_input_port_model",
                       "name": "depth",
                       "valueType": "float"
                     }
                   ],
-                  "identifier": "shaderInputPorts:92650-40aec13d-68e1-43c2-a7f7-ad1d3ff8b111",
+                  "identifier": "shaderInputPorts:269986-e5c34f75-3766-4f80-9fb9-f536fe77929c",
                   "modelName": "shaderInputPorts"
                 },
                 {
                   "children": [
                     {
                       "description": "",
-                      "identifier": "shader_output_port_model:92656-40aec13d-68e1-43c2-a7f7-ad1d3ff8b111",
+                      "identifier": "shader_output_port_model:269992-e5c34f75-3766-4f80-9fb9-f536fe77929c",
                       "modelName": "shader_output_port_model",
                       "name": "return",
                       "valueType": "vec2"
                     }
                   ],
-                  "identifier": "shaderOutputPorts:92652-40aec13d-68e1-43c2-a7f7-ad1d3ff8b111",
+                  "identifier": "shaderOutputPorts:269988-e5c34f75-3766-4f80-9fb9-f536fe77929c",
                   "modelName": "shaderOutputPorts"
                 }
               ],
               "description": "",
-              "functionName": "user::plainParallax",
-              "identifier": "shader_interface_model:92648-40aec13d-68e1-43c2-a7f7-ad1d3ff8b111",
-              "linkageName": "user::plainParallax",
-              "modelName": "shader_interface_model"
-            },
-            {
-              "children": [
-                {
-                  "children": [
-                    {
-                      "defaultValue": {
-                        "type": 1,
-                        "value": [
-                          0,
-                          0
-                        ]
-                      },
-                      "description": "",
-                      "identifier": "shader_input_port_model:1727491-85449ce5-3522-44b3-b496-c5a83f5768d2",
-                      "modelName": "shader_input_port_model",
-                      "name": "texCoords",
-                      "valueType": "vec2"
-                    },
-                    {
-                      "defaultValue": {
-                        "type": 0,
-                        "value": 0
-                      },
-                      "description": "",
-                      "identifier": "shader_input_port_model:1727493-85449ce5-3522-44b3-b496-c5a83f5768d2",
-                      "modelName": "shader_input_port_model",
-                      "name": "depthMap",
-                      "valueType": "texture_2d"
-                    },
-                    {
-                      "defaultValue": {
-                        "type": 0,
-                        "value": 0
-                      },
-                      "description": "",
-                      "identifier": "shader_input_port_model:1727495-85449ce5-3522-44b3-b496-c5a83f5768d2",
-                      "modelName": "shader_input_port_model",
-                      "name": "heightScale",
-                      "valueType": "float"
-                    }
-                  ],
-                  "identifier": "shaderInputPorts:1721237-85449ce5-3522-44b3-b496-c5a83f5768d2",
-                  "modelName": "shaderInputPorts"
-                },
-                {
-                  "children": [
-                    {
-                      "description": "",
-                      "identifier": "shader_output_port_model:1727497-85449ce5-3522-44b3-b496-c5a83f5768d2",
-                      "modelName": "shader_output_port_model",
-                      "name": "return",
-                      "valueType": "vec2"
-                    }
-                  ],
-                  "identifier": "shaderOutputPorts:1721239-85449ce5-3522-44b3-b496-c5a83f5768d2",
-                  "modelName": "shaderOutputPorts"
-                }
-              ],
-              "description": "",
-              "functionName": "user::ParallaxMapping",
-              "identifier": "shader_interface_model:1721235-85449ce5-3522-44b3-b496-c5a83f5768d2",
-              "linkageName": "user::ParallaxMapping",
+              "functionName": "user::Parallax",
+              "identifier": "shader_interface_model:269984-e5c34f75-3766-4f80-9fb9-f536fe77929c",
+              "linkageName": "user::Parallax",
               "modelName": "shader_interface_model"
             }
           ],
@@ -616,9 +552,9 @@
           "identifier": "shader_code_asset_model:1719090-85449ce5-3522-44b3-b496-c5a83f5768d2",
           "isExternalAsset": true,
           "modelName": "shader_code_asset_model",
-          "moduleName": "sparkShaderCode6245295133266938940",
+          "moduleName": "sparkShaderCode14224097527921851529",
           "name": "Parallax",
-          "wordsHash": -986887809509873619
+          "wordsHash": 8404063234752424768
         }
       ],
       "identifier": "shaders:40-7e9c9507-5f9b-4883-8363-7cfde1b06467",

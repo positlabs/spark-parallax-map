@@ -1,9 +1,7 @@
-//==============================================================================
-// Welcome to shader authoring in Meta Spark Studio!
-//==============================================================================
 using namespace std;
 
-export vec2 plainParallax(float depth)
+// @param[default=-0.2] depth
+export vec2 Parallax(float depth)
 {
   vec4 TangentView = getInverseModelMatrix() * getInverseViewMatrix() * vec4(1.,1.,1.,100.);
   vec3 TangentViewPos  = getTangentFrame() * TangentView.xyz;
@@ -15,7 +13,7 @@ export vec2 plainParallax(float depth)
   return getVertexTexCoord() - P;
 }
 
-export vec2 ParallaxMapping(vec2 texCoords, Texture2d depthMap, float heightScale)
+vec2 ParallaxMapping(vec2 texCoords, Texture2d depthMap, float heightScale)
 {
     vec4 TangentView = getInverseModelMatrix() * getInverseViewMatrix() * vec4(1.,1.,1.,100.);
     vec3 TangentViewPos  = getTangentFrame() * TangentView.xyz;
@@ -64,8 +62,9 @@ export vec2 ParallaxMapping(vec2 texCoords, Texture2d depthMap, float heightScal
     return finalTexCoords;
 }
 
+// @param[default=-0.2] depthMax
 void main(Texture2d tex, Texture2d depth, float depthMax, out vec4 Color) {
     vec2 texCoords = ParallaxMapping(getVertexTexCoord(), depth, depthMax);
-    vec2 texCoords2 = plainParallax(depthMax);
+    // vec2 texCoords2 = Parallax(depthMax);
     Color = tex.sample(texCoords);
 }
