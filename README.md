@@ -4,7 +4,6 @@
 
 The concept is from [this article](https://learnopengl.com/Advanced-Lighting/Parallax-Mapping?fbclid=IwAR3cA_QG-6F943CXCs3lNe3lFquj_H1p5mrJMrc8-obGOiim3DFwDm_EDYg)
 
-Currently, it's only the basic functionality (steep angles aren't handled, and there's no occlusion).
 
 ## Resources
 
