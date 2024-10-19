@@ -1,0 +1,94 @@
+using namespace std;
+
+mat3 transpose(mat3 m) {
+  return mat3(m[0][0], m[1][0], m[2][0],
+              m[0][1], m[1][1], m[2][1],
+              m[0][2], m[1][2], m[2][2]);
+}
+
+// Depth-mapped parallax effect
+// @param[default=1.0] depthFactor
+// @param[default=8.0] minLayers
+// @param[default=32.0] maxLayers
+// @param[default=1.0] vanishingDirection
+vec4 main(
+  Texture2d tex,
+  Texture2d depthMap,
+  float depthFactor,
+  float minLayers,
+  float maxLayers,
+  float vanishingDirection
+){
+  // TBN to convert from world to object tangent space
+  vec3 T = normalize(mat3(getModelMatrix()) * getVertexTangent());
+  // Note here we transpose the inverse model matrix to maintain correct normal directions when rotations are applied
+  vec3 N = normalize(mat3(transpose(mat3(getInverseModelMatrix()))) * getVertexNormal());
+  vec3 B = cross(N, T);
+  mat3 TBN = mat3(T, B, N);
+
+  vec3 viewPos = getCameraPosition().xyz;
+  vec3 modelPos = fragment(getModelMatrix() * getVertexPosition()).xyz;
+  vec3 viewDirWorld = normalize(viewPos - modelPos);
+  vec3 viewDir = normalize(viewDirWorld * TBN);
+
+  // offset texture coordinates with Parallax Mapping
+  // number of depth layers
+  float numLayers = mix(maxLayers, minLayers, abs(dot(vec3(0.0, 0.0, 1.0), viewDir)));
+  // calculate the size of each layer
+  float layerDepth = 1.0 / numLayers;
+  // depth of current layer
+  float currentLayerDepth = 0.0;
+
+  // the amount to shift the textue coordinates per layer (from vector P)
+  vec2 P = (viewDir.xy * vec2(1., -vanishingDirection)) / viewDir.z * depthFactor * layerDepth;
+
+  vec2 deltaTexCoords = P / numLayers;
+
+  // get initial values
+  vec2 currentTexCoords = getVertexTexCoord();
+  float currentDepthMapValue = depthMap.sample(currentTexCoords).r;
+
+  while(currentLayerDepth < currentDepthMapValue)
+  {
+    // shift texture coordinates along direction of P
+    currentTexCoords -= deltaTexCoords;
+    // get depthmap value at current texture coordinates
+    currentDepthMapValue = depthMap.sample(currentTexCoords).r;
+    // get depth of next layer
+    currentLayerDepth += layerDepth;
+  }
+
+  // get texture coordinates before collision (reverse operations)
+  vec2 prevTexCoords = currentTexCoords + deltaTexCoords;
+
+  // get depth after and before collision for linear interpolation
+  float afterDepth  = currentDepthMapValue - currentLayerDepth;
+  float beforeDepth = depthMap.sample(prevTexCoords).r - currentLayerDepth + layerDepth;
+
+  // interpolation of texture coordinates
+  float weight = afterDepth / (afterDepth - beforeDepth);
+  vec2 finalTexCoords = prevTexCoords * weight + currentTexCoords * (1.0 - weight);
+
+  return tex.sample(finalTexCoords);
+}
+
+// Single layer parallax offset
+// @param[default=#00000000] tex
+// @param[default=1.0] depth
+// @return color
+export vec4 ParallaxLayer(Texture2d tex, vec2 uv, float depth) {
+
+  // TBN to convert from world to object tangent space
+  vec3 T = normalize(mat3(getModelMatrix()) * getVertexTangent());
+  // Note here we transpose the inverse model matrix to maintain correct normal directions when rotations are applied
+  vec3 N = normalize(mat3(transpose(mat3(getInverseModelMatrix()))) * getVertexNormal());
+  vec3 B = cross(N, T);
+  mat3 TBN = mat3(T, B, N);
+
+  vec3 viewPos = getCameraPosition().xyz;
+  vec3 modelPos = fragment(getModelMatrix() * getVertexPosition()).xyz;
+  vec3 viewDirWorld = normalize(viewPos - modelPos);
+  vec3 viewDir = normalize(viewDirWorld * TBN);
+  vec2 P = (viewDir.xy * vec2(-1., 1.)) / viewDir.z * depth + uv;
+  return tex.sample(P);
+}
